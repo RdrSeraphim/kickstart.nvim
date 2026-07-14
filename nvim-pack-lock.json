@@ -67,9 +67,21 @@
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
+    "nvim-dap-cs": {
+      "rev": "16e5debe8cb7fb73c8799d20969ee00883586602",
+      "src": "https://github.com/nicholasmata/nvim-dap-cs"
+    },
+    "nvim-dap-envfile": {
+      "rev": "093990f8c769c0c1b34646fe2950296b3e4e003e",
+      "src": "https://github.com/ravsii/nvim-dap-envfile"
+    },
     "nvim-dap-go": {
       "rev": "b4421153ead5d726603b02743ea40cf26a51ed5f",
       "src": "https://github.com/leoluz/nvim-dap-go"
+    },
+    "nvim-dap-python": {
+      "rev": "1808458eba2b18f178f990e01376941a42c7f93b",
+      "src": "https://github.com/mfussenegger/nvim-dap-python"
     },
     "nvim-dap-ui": {
       "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
