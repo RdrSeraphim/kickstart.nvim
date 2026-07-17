@@ -1,12 +1,14 @@
--- Integration for `blogcli`, the two authoring helpers in rdrseraphim/blog
+-- Integration for `blogcli`, the authoring helpers in rdrseraphim/blog
 -- (cmd/blogcli) that Hugo and editor plugins don't already cover:
 --
 --   footnotes    turns a footnote written with its text right in the
 --                marker, e.g. [^A cat sound.], into the blog's numbered
 --                [^1]/[^2] endnote style
---   frontmatter  fixes up a content file's front matter (old TOML +++
---                blocks, missing lastmod/slug, field order) to match the
---                rest of the site
+--   frontmatter  normalizes a content file's front matter (to canonical
+--                TOML, filling in lastmod/slug, fixing field order) to
+--                match the rest of the site
+--   lint         reports front matter problems in the current file
+--                (missing summary, cover without cover-alt, etc.)
 --
 -- Metadata scaffolding and preview are intentionally *not* handled here:
 -- use `hugo new posts/YYYY/MM/DD/slug/index.md` / `hugo new pages/slug.md`
@@ -70,6 +72,25 @@ local function fix_frontmatter()
   run_fix('frontmatter', 'fixing front matter')
 end
 
+---Run `blogcli lint` on the current file and show the report. Read-only,
+---so it doesn't care whether the buffer is modified.
+local function lint_file()
+  if vim.fn.executable(blogcli_cmd()) == 0 then
+    vim.notify("blogcli: '" .. blogcli_cmd() .. "' not found on PATH.", vim.log.levels.ERROR)
+    return
+  end
+  local file = vim.api.nvim_buf_get_name(0)
+  local result = vim.system({ blogcli_cmd(), 'lint', file }, { text = true }):wait()
+  local report = vim.trim(result.stdout)
+  if report == '' then
+    vim.notify('blogcli: front matter looks clean', vim.log.levels.INFO)
+    return
+  end
+  -- Errors make lint exit non-zero; warnings alone exit 0.
+  local level = result.code ~= 0 and vim.log.levels.ERROR or vim.log.levels.WARN
+  vim.notify(report, level)
+end
+
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('blogcli', { clear = true }),
   pattern = 'markdown',
@@ -82,5 +103,6 @@ vim.api.nvim_create_autocmd('FileType', {
     end
     map('<leader>pf', fix_footnotes, 'Blog: [P]ost [F]ix/renumber footnotes')
     map('<leader>pm', fix_frontmatter, 'Blog: [P]ost fix front [M]atter')
+    map('<leader>pl', lint_file, 'Blog: [P]ost [L]int front matter')
   end,
 })
