@@ -125,6 +125,7 @@ do
     vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
     -- Enable break indent
+    vim.o.linebreak = true
     vim.o.breakindent = true
 
     -- Enable undo/redo changes even after closing and reopening a file
@@ -381,7 +382,7 @@ do
     require('catppuccin').setup {
         flavour = 'mocha',
         transparent_background = true,
-        no_italic = true,
+        no_italic = false,
     }
 
     vim.o.termguicolors = true

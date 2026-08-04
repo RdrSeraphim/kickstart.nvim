@@ -30,6 +30,10 @@
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
+    "kitty-scrollback.nvim": {
+      "rev": "1c2ac18420078525b7a4279aade891c1602b35c2",
+      "src": "https://github.com/mikesmithgh/kitty-scrollback.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "a4068c3ebd4cb335b25239e5ea35c22ee6007962",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -105,7 +109,8 @@
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
@@ -130,6 +135,10 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "twilight.nvim": {
+      "rev": "664e752f4a219801265cc3fc18782b457b58c1e1",
+      "src": "https://github.com/folke/twilight.nvim"
     },
     "vim-dispatch-neovim": {
       "rev": "c8c4e21a95c25032a041002f9bf6e45a75a73021",
